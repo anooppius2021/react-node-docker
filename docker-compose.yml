@@ -1,0 +1,30 @@
+version: '3'
+services:
+  project-ui:
+    build:
+      context: project-ui
+      dockerfile: Dockerfile
+    image: project-ui
+    container_name: project-ui
+#    volumes:
+#      - /project-ui/node_modules
+#      - .:/project-ui
+    ports:
+      - "3000:3000"
+    networks:
+      - internal
+  project-external-api:
+    build:
+      context: project-external-api/.
+      dockerfile: Dockerfile
+    image: project-external-api
+    container_name: project-external-api
+    restart: always
+    ports:
+      - "3020:3020"
+    networks:
+      - internal
+networks:
+  internal:
+
+
