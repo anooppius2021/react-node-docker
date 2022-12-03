@@ -1,14 +1,21 @@
 version: '3'
 services:
+  project-database:
+    image: mongo:4.4.18-rc0-focal
+    networks:
+      - internal
+    ports:
+      - 30201:27017
+    volumes:
+      - /Users/anooppius/personal/learning/project/react-node-docker/data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: project-template
   project-ui:
     build:
       context: project-ui
       dockerfile: Dockerfile
     image: project-ui
     container_name: project-ui
-#    volumes:
-#      - /project-ui/node_modules
-#      - .:/project-ui
     ports:
       - "3000:3000"
     networks:
