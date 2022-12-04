@@ -16,7 +16,9 @@ pipeline {
         }
         stage('Push') {
             steps {
-                echo 'Testing..'
+                sh '''
+                ./scripts/upload-docker-images.sh
+                '''
             }
         }
         stage('Deploy') {
